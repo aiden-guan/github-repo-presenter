@@ -1,8 +1,8 @@
 interface:
   display_name: "GitHub Repo Presenter"
-  short_description: "Polish a repo for portfolio-ready presentation"
+  short_description: "Make any repo credible and portfolio-ready"
   brand_color: "#24292F"
-  default_prompt: "Use $github-repo-presenter to audit and polish this repository for a credible, portfolio-ready GitHub showcase."
+  default_prompt: "Use $github-repo-presenter and its portable workflow to audit and polish this repository for a credible, reproducible, portfolio-ready showcase."
 
 policy:
   allow_implicit_invocation: true

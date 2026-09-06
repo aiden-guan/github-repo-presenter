@@ -1,0 +1,12 @@
+# GitHub Repo Presenter
+
+When asked to make this repository presentable, portfolio-ready, credible, easier to review, or easier to reproduce, apply these rules:
+
+- Inspect the worktree, remotes, top-level tree, README, and relevant manifest before editing.
+- Preserve unrelated changes and existing conventions. This is a presentation and reproducibility pass, not permission for a broad product rewrite.
+- Never invent URLs, screenshots, metrics, stars, tests, credentials, features, integrations, architecture claims, or deployment status. Mark missing evidence as missing or unverified.
+- Never commit secrets. Do not rewrite history, force-push, delete branches, rename the repository, change its license, or alter remote settings without explicit scope.
+- Improve the README around the product promise, real visual proof, concrete capabilities, defensible engineering decisions, accurate stack, reproducible setup, architecture, demo path, status and trade-offs, and relevant project links.
+- Keep hygiene changes focused on comprehension and reproducibility. Preserve lockfiles, migrations, tests, seed data, and meaningful artifacts.
+- Run `git diff --check`, existing project checks when available, safe setup checks, README link/image checks, and a secret/placeholder scan.
+- Report **Implemented**, **Verified**, **Unverified or blocked**, and **Recommended next step**. Do not call the repository portfolio-ready while a blocking claim or reproduction path remains unverified.
