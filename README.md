@@ -49,11 +49,11 @@ mkdir -p ~/.agents/skills
 ln -sfn ~/github-repo-presenter/github-repo-presenter ~/.agents/skills/github-repo-presenter
 ```
 
-For a local development checkout:
+For a local development checkout, replace the example path with your clone:
 
 ```bash
 mkdir -p ~/.agents/skills
-ln -sfn "/Users/aidenguan/Documents/ChatGPT/Github Skill/github-repo-presenter" ~/.agents/skills/github-repo-presenter
+ln -sfn "/absolute/path/to/github-repo-presenter/github-repo-presenter" ~/.agents/skills/github-repo-presenter
 ```
 
 Then invoke it with:
@@ -76,3 +76,30 @@ Restart Codex if the skill does not appear immediately. The Codex-specific entry
 - `SKILL.md` and `agents/openai.yaml` — optional Codex integration.
 
 The workflow preserves unrelated work, avoids fabricated proof, and distinguishes implemented, locally verified, remotely configured, and unverified work.
+
+## Run the inventory directly
+
+The Python scripts use the standard library; no package install or API key is required. Use Python 3.10+ and Git for repository metadata.
+
+From the toolkit root:
+
+```bash
+python3 github-repo-presenter/scripts/audit_repo.py .
+python3 github-repo-presenter/scripts/audit_repo.py . --json
+python3 github-repo-presenter/scripts/install_adapter.py --help
+```
+
+The audit reports the branch, worktree, manifests, README evidence, and presentation gaps. Its output is an inventory, not proof that a project works. To preview an adapter without modifying your project:
+
+```bash
+python3 github-repo-presenter/scripts/install_adapter.py \
+  --target /path/to/your/project --adapter agents --dry-run
+```
+
+## How the toolkit works
+
+The Markdown playbook defines the review and verification process. The read-only audit script supplies evidence; an agent interprets it and edits the target repository. The optional installer copies instruction templates and refuses existing destinations by default. Installation alone does not run the audit or rewrite a README.
+
+## Status and limits
+
+This is a prompt-and-script toolkit, not a hosted service or an automatic quality certification. Audit heuristics can miss project-specific gaps or flag intentional omissions. Runtime checks, screenshots, live deployments, and external integrations require separate verification in each target project. The repository currently has no license file or automated test suite.
