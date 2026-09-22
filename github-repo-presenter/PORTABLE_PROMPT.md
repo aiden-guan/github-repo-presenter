@@ -1,111 +1,153 @@
-# GitHub Repo Presenter
+# GitHub Repo Presenter (Portable Playbook)
 
-Use this playbook when a user asks to make a repository presentable, portfolio-ready, credible, easier to review, or easier to reproduce. It is tool-neutral: apply it from any coding agent, IDE, CLI, or chat interface.
+Use this playbook whenever a user asks to make a repository **presentable, portfolio-ready, technically credible, visually strong, easier to review, or easier to reproduce**.
 
-## Outcome
+It is completely tool-neutral: execute it from any coding agent, IDE assistant, CLI environment, or pair-programming session.
 
-Make the repository easy to understand, easy to run, and honest about its maturity. Optimize for the first minute of a portfolio review while preserving enough technical depth for an engineer to verify the work.
+---
 
-This is a presentation and reproducibility pass, not permission for a broad product rewrite. Work on the target repository, not on this toolkit, unless the user explicitly asks to improve the toolkit itself.
+## 1. Outcome & Scope
 
-## Guardrails
+Transform the target repository into an exceptionally polished open-source/product showcase on par with benchmark repositories (**Onlook**, **Twenty**, **Infisical**, **Formbricks**, **Midday**, **Trigger.dev**, **Browser Use**, **Langfuse**, **Plane**, **Excalidraw**).
 
-- Inspect the worktree before editing. Preserve unrelated dirty changes, existing conventions, and the user's project structure unless a move is clearly necessary and in scope.
-- Never invent a live URL, screenshot, testimonial, usage metric, star count, test result, credential, feature, integration, or architecture claim. If evidence is missing, label it missing or unverified.
-- Do not commit secrets. Treat `.env`, API keys, tokens, private URLs, database dumps, generated credentials, and real user data as sensitive. Create or update `.env.example` only with safe placeholders derived from the code.
-- Do not rewrite Git history, force-push, delete branches, rename the repository, change its license, or alter remote settings unless the user explicitly requests that exact action.
-- Keep portfolio polish separate from product changes. Do not remove working behavior, add dependencies, or refactor application code only to make the repository look nicer.
-- Use real product captures and assets. Never generate a fake UI screenshot and present it as proof of a working feature.
-- Badges are optional. Add only badges whose target, meaning, and status are real and maintainable; a badge wall is not evidence of quality.
+The repository must read as a compact union of:
+- **Product page** (what problem it solves, why it matters, visual proof)
+- **Engineering case study** (real technical hurdles, architecture, trade-offs)
+- **Technical documentation** (accurate stack, verified setup, API/data flow)
 
-## Evidence pass
+This is a presentation and reproducibility pass. **Never perform a product rewrite or refactor functional code** solely to make the repository look nicer.
 
-1. Resolve the target repository root. Inspect `git status --short --branch`, the current branch, remotes, and the top-level tree.
-2. If this toolkit is available, run the read-only inventory:
+---
 
+## 2. The 10 Visitor Goals
+
+Within 30 seconds, a technically sophisticated visitor (engineer, recruiter, or tech lead) must:
+1. Understand what the project does within **~5 seconds**.
+2. See why the project is interesting within **~15 seconds**.
+3. Visually understand the core product without running it.
+4. Understand major capabilities without reading large paragraphs.
+5. Understand how the system works technically.
+6. Identify the most impressive engineering decisions.
+7. Run the project locally with minimal friction.
+8. Navigate the repository easily via a curated directory tree.
+9. Distinguish the project from a generic hackathon or tutorial build.
+10. Leave with the impression that the repository was intentionally designed and maintained.
+
+---
+
+## 3. Strict Non-Negotiable Guardrails (Anti-Hallucination)
+
+- **Zero Fabrications**: Never invent live URLs, active users, revenue, benchmarks, features, integrations, performance speedups, deployment status, awards, or star counts.
+- **Label Unverified Claims**: If evidence is missing or requires an API key, mark it clearly as unverified or required.
+- **Zero Committed Secrets**: Treat `.env`, API keys, tokens, session IDs, private keys, database dumps, and credentials as strictly sensitive. Create or update `.env.example` only with safe placeholders.
+- **Zero Fake UI Screenshots**: Never generate fake UI mockups and present them as proof of working code. If visual assets are missing, use code-based visual assets (Mermaid architecture flowcharts, ASCII trees, formatted code snippet tables) and provide an explicit screenshot capture specification for the user.
+- **Preserve Unrelated Work**: Check `git status --short --branch` before editing. Never overwrite unrelated dirty files, rewrite Git history, force-push, or delete branches without explicit instruction.
+
+---
+
+## 4. Execution Workflow
+
+### Phase 1: Codebase Deep Dive
+**Never begin by rewriting README.md.** Understand the codebase first:
+1. Run the read-only inventory if available:
    ```bash
-   python3 /path/to/github-repo-presenter/scripts/audit_repo.py .
+   python3 scripts/audit_repo.py .
    ```
+2. Read manifests (`package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, etc.).
+3. Examine key directories (`src/`, `app/`, `components/`, `lib/`, `server/`, `api/`).
+4. Review database schemas/migrations (`prisma/`, `drizzle/`, `schema.sql`, `models/`).
+5. Check infrastructure configs (`Dockerfile`, `docker-compose.yml`, GitHub Actions).
+6. Check test suites and seed scripts.
+7. Review existing media assets (`assets/`, `docs/assets/`, `public/`).
 
-   Use `--json` when a machine-readable inventory helps. The script is a gap finder, not a quality verdict.
-3. Identify the actual project type, entry points, package manager, runtime versions, environment variables, test/lint/build commands, deployment URLs, screenshots, and existing docs. Read the relevant manifest and README before proposing replacement text.
-4. Separate findings into:
+From this, deduce:
+- The core problem solved and primary user workflow.
+- Key technical mechanisms and difficult engineering decisions.
+- How the application runs and is verified locally.
+- True status and maturity of the codebase.
 
-   - **Blocking** — a visitor cannot tell what the project is, cannot start it, or would be misled by a broken or false claim.
-   - **High impact** — missing visual proof, missing reproducible setup, unexplained architecture, unsafe environment guidance, or confusing repository clutter.
-   - **Polish** — hierarchy, link labels, spacing, metadata suggestions, social preview, and optional badges.
+### Phase 2: Project Archetype Classification
+Consult [references/project-types.md](references/project-types.md) and classify the project into one of 8 archetypes:
+1. **Product / SaaS**: Lead with product hero, 2x2 visual feature grid, user workflow, client/server/DB architecture, and local vs. deploy paths.
+2. **AI / Agent**: Lead with terminal/browser interaction demo, model/tool orchestration diagram, tool execution loop, context management, and honest limitations.
+3. **Developer Tool / Library**: Lead with 5-line copy-pasteable code snippet in first viewport, 1-line package install, API ergonomics, and verified benchmarks.
+4. **Game / Interactive Graphics**: Lead with gameplay GIF/video, core loop mechanics, controls table, and rendering/physics architecture.
+5. **Data / ML**: Lead with problem statement, pipeline DAG flowchart, dataset provenance, and reproducible evaluation commands.
+6. **Mobile Application**: Lead with framed device mockups, user journey, offline storage/sync, and Expo/simulator setup.
+7. **Infrastructure / Backend**: Lead with system topology diagram, concurrency/resilience model, wire protocol/API, and Docker quickstart.
+8. **Personal Experimental**: Lead with provocative hypothesis, proof demo, what was built vs. borrowed, and engineering hurdles.
 
-If the user asks for an audit only, stop after the evidence-backed report. If the user asks to make the repo presentable, implement the smallest coherent set of changes that addresses blocking and high-impact gaps.
+### Phase 3: Visual Presentation System
+Consult [references/visual-system.md](references/visual-system.md):
+- **First Viewport**: Project name, one-sentence promise, primary links (`Live Demo`, `Docs`, `Quickstart`), and high-impact visual proof.
+- **Feature Grids**: Replace vertical screenshot waterfalls with clean 2-column comparison tables or feature grids (`| Feature A | Feature B |`).
+- **Framing**: Crop all OS taskbars, browser chrome, and debug noise. Use standard aspect ratios (`16:9` or `4:3`) and 2x retina clarity.
+- **Demonstrations**: Capture the primary interaction loop (Input → Interaction → Result) as a short, compressed GIF or video (<5MB).
+- **Missing Assets**: When UI screenshots are unavailable, use Mermaid system diagrams, data flow charts, and detailed CLI code blocks.
 
-## Benchmarks without imitation
+### Phase 4: Architecture & Engineering Deep Dives
+1. **Architecture Communication**:
+   - Construct a clear Mermaid diagram (`flowchart LR` or `flowchart TD`) with distinct subgraphs (`Client`, `Gateway`, `Services`, `Persistence`).
+   - Accompany with an end-to-end numbered workflow (steps 1–5) referencing actual source modules.
+2. **Interesting Engineering (PAWT Framework)**:
+   Consult [references/engineering-deep-dives.md](references/engineering-deep-dives.md). For 1-3 substantial engineering challenges, document:
+   - **Problem**: The exact constraint, bottleneck, or concurrency/state hazard.
+   - **Approach**: What was implemented in the codebase.
+   - **Why**: Why this design was chosen over obvious alternatives.
+   - **Tradeoff**: What was sacrificed, complicated, or bounded.
 
-For a public-facing or portfolio pass, review two or more relevant benchmark repositories when browsing is available. Prefer projects in the same category or stack, and inspect their rendered README and repository surface—not just their source code. Start with [references/benchmark-repos.md](references/benchmark-repos.md) when it is available.
+### Phase 5: README Information Architecture & Repository Hygiene
+Consult [references/readme-architecture.md](references/readme-architecture.md) and [references/github-surfaces.md](references/github-surfaces.md):
+1. Recommended Section Sequence:
+   - Hero (Identity, 1-sentence value proposition, verifiable badges, hero visual)
+   - What it does & why it exists
+   - Core capabilities (structured visual grid)
+   - Product walkthrough
+   - Architecture & system flow (Mermaid + numbered workflow)
+   - Interesting engineering (PAWT blocks)
+   - Technology stack (categorized by responsibility: Client, Backend, Storage, Infra)
+   - Getting started (Prerequisites, Quick Start, Full Dev Setup)
+   - Configuration (`.env.example` reference)
+   - Curated repository structure (functional tree)
+   - Verification & testing commands
+   - Roadmap, status & honest limits
+   - License
+2. Writing Style:
+   - Concise, active voice, written like a senior systems engineer.
+   - Ban all marketing fluff (*revolutionary, cutting-edge, seamless, delve, game-changing*).
+   - Use concrete specifics over vague slogans.
+3. Clean Repository Root:
+   - Remove tracking of generated artifacts (`.DS_Store`, build caches, logs).
+   - Ensure a truthful `.gitignore` and safe `.env.example`.
 
-Extract patterns such as:
+### Phase 6: Automated Validation & Quality Rubric
+1. **Automated Validation**:
+   ```bash
+   python3 scripts/validate_readme.py README.md --strict
+   ```
+   Verifies that all relative links resolve, images exist on disk, heading hierarchy is sound, scripts match `package.json`, environment variables match `.env.example`, and zero secrets or buzzwords exist.
+2. **Internal Rubric Self-Check**:
+   Consult [references/quality-rubric.md](references/quality-rubric.md). Internally rate the repository across the 12 dimensions:
+   1. Clarity
+   2. Visual hierarchy
+   3. Visual quality
+   4. Technical credibility
+   5. Technical depth
+   6. Demo quality
+   7. Architecture communication
+   8. Setup quality
+   9. Scannability
+   10. Repository organization
+   11. Accuracy
+   12. Originality
+   *Trigger Rule: If any dimension scores < 4, perform a targeted revision pass before completing.* (Never print numerical scores into the README).
 
-- a one-sentence product promise before implementation detail;
-- a real demo, screenshot, GIF, video, diagram, or terminal example near the top;
-- separate paths for users, self-hosters, contributors, and maintainers;
-- a short, accurate technology and architecture explanation;
-- setup commands specific enough to reproduce;
-- visible contribution, license, security, and support paths where the project actually needs them.
+---
 
-Do not copy prose, branding, assets, layout, or unsupported claims. Stars and forks are time-sensitive signals, not a target or a substitute for proof that the user's project works.
+## 5. Handoff Structure
 
-## README structure
-
-Rewrite the existing README in place when possible. Keep the first screen concise and move long instructions to `docs/` only when the project benefits from a separate guide.
-
-Use this order when it fits the project:
-
-1. **Identity** — project name, plain-language value proposition, and one or two verified links such as Demo, Docs, or API reference.
-2. **Visual proof** — real screenshot, short recording, diagram, or terminal example. Use descriptive alt text and repository-relative paths. If no proof exists, say so and record the gap in the handoff rather than inventing one.
-3. **What it does** — three to six concrete capabilities framed around user outcomes, not vague framework slogans.
-4. **Why it is interesting** — engineering decisions, constraints, integrations, data flow, performance work, or security properties that the author can explain.
-5. **Built with** — compact list of technologies actually found in the repository, grouped by role. Explain unusual choices; do not list every transitive dependency.
-6. **Quick start** — prerequisites, install command, environment setup, database or seed steps, dev command, and verification commands. Reproduce these commands locally when feasible and mark anything not run as unverified.
-7. **How it works** — architecture diagram or concise flow for projects with multiple services, auth, payments, queues, AI, or a non-obvious data model. Do not add a diagram the source cannot support.
-8. **Demo path** — safe demo credentials, seed data, test account, or short walkthrough only when the user supplied or verified it. Never expose real credentials.
-9. **Status, trade-offs, and limits** — distinguish prototype, active project, deployed app, and production-ready claims. Include known limitations and sensible next steps when they help a reviewer understand scope.
-10. **Contributing, support, security, and license** — link to files or channels that exist. Add community files only when the repository's audience and maintenance capacity justify them.
-
-For a personal showcase, add a short `Engineering notes` or `Decisions and trade-offs` section when it demonstrates understanding. Explain decisions the author can defend; do not inflate the technology list. If AI-assisted development is relevant, disclose it briefly and keep human-verified design, testing, and trade-offs visible.
-
-## Repository hygiene
-
-Make only changes that improve comprehension or reproducibility:
-
-- Keep the root focused on the entry points a visitor needs. Prefer `docs/`, `assets/`, `scripts/`, `tests/`, and `examples/` for material that has a clear home.
-- Fix obvious README links, image paths, heading hierarchy, code fences, and command formatting.
-- Add or improve a truthful `.gitignore` for the detected stack. Do not ignore source files or hide meaningful artifacts.
-- Add `.env.example` only when environment variables are confirmed from code or existing docs. Include comments for where values come from, not real values.
-- Preserve lockfiles, migrations, tests, seed data, and configuration that are part of the actual workflow.
-- Add `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue templates, or CI only when the audience and maintenance capacity justify them. Do not create empty ceremonial files.
-- Do not delete generated files or restructure directories just because they look untidy. Flag tracked build output, logs, large binaries, and secrets for explicit cleanup when the target is not unambiguous.
-- Prefer documenting an existing command over inventing a new script. If a small script addition is necessary, verify it and explain the behavior change.
-
-For GitHub-hosted projects, keep local edits distinct from remote presentation settings. A handoff may recommend a concise repository description, homepage or demo URL, lower-case hyphenated topics, social preview image, and profile pins. Do not claim those settings changed unless they were actually updated and read back.
-
-## Verification
-
-Run the least expensive checks that prove the edits are safe and useful:
-
-- `git diff --check` for whitespace errors;
-- the project's existing lint, typecheck, test, build, or validation commands when available;
-- the documented install or start path when it can run without credentials or destructive data changes;
-- local existence of every README image and relative link target;
-- a search for accidental secrets, real credentials, private hostnames, and placeholder text left in public-facing files;
-- `git status --short` and a focused diff review.
-
-Do not report a deployment, live demo, authenticated flow, external integration, or security property as verified unless it was tested through that path. A clean README and a passing local build prove less than a working deployed product.
-
-## Handoff
-
-End with four short sections:
-
-- **Implemented** — files changed and the user-visible improvement;
-- **Verified** — commands or observations that actually passed;
-- **Unverified or blocked** — missing URLs, credentials, deployment access, remote settings, or checks that could not be run;
-- **Recommended next step** — the highest-leverage remaining action, if any.
-
-Use “documented,” “locally verified,” “observed,” and “unverified” precisely. Do not call a repository portfolio-ready while a blocking claim or reproduction path remains unverified.
+Conclude every repository presentation pass with four clear sections:
+- **Implemented**: Exact files modified or created and the user-visible presentation enhancements.
+- **Locally Verified**: Commands executed and validation tests that passed (e.g., `validate_readme.py`, test commands, link checks).
+- **Unverified / Awaiting Owner Action**: External items requiring owner keys, live DNS, deployment triggers, or GitHub remote settings (e.g., repository description, topics, social preview upload).
+- **Screenshot / Media Capture Checklist**: If new UI captures are recommended, list exact route, viewport dimensions, interaction state, and destination filename.

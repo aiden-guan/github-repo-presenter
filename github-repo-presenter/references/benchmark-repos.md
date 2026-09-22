@@ -1,33 +1,93 @@
-# Benchmark repositories
+# Benchmark Repositories & Core Design Patterns
 
-This is a pattern library, not a list of templates to copy. The approximate stars and forks below were observed on public GitHub pages on 2026-09-05 and will drift. Re-check current numbers before quoting them in a README or report.
+This reference analyzes the exact presentation mechanics, architecture narratives, and visual strategies of benchmark open-source and product repositories.
 
-## High-traction examples
+Use these as **principles to learn from, not templates to copy verbatim**. Every repository must develop its own authentic voice based on its actual codebase.
 
-| Repository | Approx. traction | Useful presentation pattern |
-| --- | --- | --- |
-| [vercel/next.js](https://github.com/vercel/next.js) | 142k stars, 31.9k forks | A short product definition followed by Getting Started, Documentation, Community, Contributing, Security, and good-first-issue paths. It makes the next action obvious for different readers. |
-| [excalidraw/excalidraw](https://github.com/excalidraw/excalidraw) | 131k stars, 15.2k forks | Strong product identity, links to the hosted app/docs/blog, a concrete feature list, a quick package start, integrations, and named adoption examples. The README shows what the product is before explaining the monorepo. |
-| [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | 123k stars, 10.1k forks | Very restrained README: clear positioning, a documentation link, contribution guidance, a license, and accurate repository metadata. It demonstrates that a small README can be effective when the product is already legible. |
-| [supabase/supabase](https://github.com/supabase/supabase) | 109k stars, 13.7k forks | A one-paragraph product promise, capability bullets, documentation and community routes, and a short “how it works” explanation. The repository surface also exposes contribution, security, and license paths. |
-| [dubinc/dub](https://github.com/dubinc/dub) | 24.7k stars, 3.3k forks | Puts real product traction in context—100M+ clicks and 2M+ links monthly—then explains the stack, self-hosting, contribution flow, recommended versions, and common setup issues. Use metrics only when the owner can substantiate them. |
-| [formbricks/formbricks](https://github.com/formbricks/formbricks) | 12.3k stars, 2.3k forks | Combines visual proof, a cloud demo, feature bullets, a real stack list, cloud/self-hosting paths, local development, contribution guidance, security, and license details. This is a strong model for a product repo that needs both marketing clarity and engineering depth. |
+---
 
-## What to borrow for a portfolio project
+## The 10 Benchmark Repositories
 
-1. Lead with the problem, audience, and result. “A Next.js app” is implementation detail; “a private feedback workspace for small teams” is an identity.
-2. Put proof near the top. A screenshot, live demo, short video, or representative terminal output lets a reviewer evaluate the work before reading the code.
-3. Give readers a route. A visitor should be able to choose Demo, Quick start, Architecture, Tests, or Source without scanning a wall of text.
-4. Make engineering depth legible. Name the consequential decisions and trade-offs, show the data/auth flow when it is non-obvious, and list commands that were actually run.
-5. Use traction as context, not decoration. Stars, forks, releases, customers, integrations, and usage metrics are useful only when they are real, dated when appropriate, and attributable.
-6. Keep trust surfaces visible. A license, contribution path, security contact, limitations, and status signal help reviewers distinguish a maintained project from a generated folder.
-7. Add the portfolio-specific layer large open-source projects often omit: why the project was built, what the author learned, what they would change next, and which parts are intentionally out of scope.
+### 1. [Onlook](https://github.com/onlook-dev/onlook) — The Product → Architecture → Implementation Narrative
+- **Core Pattern**: Seamless bridge between high-level visual design and hardcore systems engineering.
+- **Key Takeaways**:
+  - Leads with a crisp 1-sentence promise followed immediately by an interactive UI recording.
+  - Explains how visual editing maps to underlying React AST modifications without dumbing down the explanation.
+  - Links direct code modules to visual capabilities so developers can verify how features are implemented.
 
-## Anti-patterns to reject
+### 2. [Twenty](https://github.com/twentyhq/twenty) — Exceptional Visual Feature Presentation
+- **Core Pattern**: Highly structured, modular visual showcase for multi-capability applications.
+- **Key Takeaways**:
+  - Uses 2-column framed feature cards with high-contrast, cropped UI captures.
+  - Keeps captions strictly focused on user workflows rather than generic marketing slogans.
+  - Clear, distinct paths for Self-Hosting (Docker), Cloud, and Contributor development.
 
-- Copied README language or badges from a popular repository.
-- “Production-ready,” “secure,” “scalable,” or “AI-powered” claims without a corresponding implementation and verification path.
-- A giant technology list that does not explain the important choices.
-- A screenshot that does not exist in the repository or cannot be reproduced from the current code.
-- A live-demo link that points at a dead deployment, login wall, or unrelated product.
-- Empty community files added only to make the repository checklist look complete.
+### 3. [Infisical](https://github.com/Infisical/infisical) — Premium Technical & Security Aesthetic
+- **Core Pattern**: High-trust, security-first technical aesthetic that exudes reliability.
+- **Key Takeaways**:
+  - Clean, restrained typography with high contrast and zero visual noise.
+  - Architecture and encryption flow presented with mathematical clarity (zero-knowledge architecture diagram).
+  - CLI usage demonstrated with copy-pasteable terminal blocks right after the hero.
+
+### 4. [Formbricks](https://github.com/formbricks/formbricks) — Clean Product Storytelling & Screenshot Usage
+- **Core Pattern**: Balanced storytelling combining user outcomes, cloud demo, and developer setup.
+- **Key Takeaways**:
+  - Screenshot discipline: all captures are cropped to relevant cards, avoiding full browser taskbar clutter.
+  - Transparent technology stack list categorized by layer (Client, Backend, Database).
+  - Comprehensive documentation and self-hosting instructions that minimize onboarding friction.
+
+### 5. [Midday](https://github.com/midday-ai/midday) — Superior Architecture & Tech-Stack Communication
+- **Core Pattern**: Engineering case study demonstrating modern full-stack architecture at scale.
+- **Key Takeaways**:
+  - Explains how monorepo packages (`apps/*`, `packages/*`) interconnect.
+  - Documents exact technical choices (e.g., Turborepo, Next.js App Router, Supabase, Upstash, trigger.dev) and their concrete roles.
+  - Communicates real engineering trade-offs (e.g., financial data precision, reconciliation pipelines).
+
+### 6. [Trigger.dev](https://github.com/triggerdotdev/trigger.dev) — Highly Organized Information Hierarchy
+- **Core Pattern**: Fast developer navigation and crystal-clear value proposition.
+- **Key Takeaways**:
+  - Immediate visual contrast showing the problem with serverless timeouts vs. background worker execution.
+  - High-converting 60-second quickstart with minimal, tested CLI commands.
+  - Clean, professional typography with structured callout alerts for important caveats.
+
+### 7. [Browser Use](https://github.com/browser-use/browser-use) — Immediate Proof of Capability
+- **Core Pattern**: Unambiguous visual demonstration of autonomous agent execution.
+- **Key Takeaways**:
+  - Puts a lightweight terminal/browser recording directly in the first viewport showing the agent navigating a real website.
+  - Follows with an ultra-compact 5-line Python script demonstrating minimal usage.
+  - Honest disclosure of agent limitations, CAPTCHA edge cases, and token usage considerations.
+
+### 8. [Langfuse](https://github.com/langfuse/langfuse) — Communicating Complex Technical Systems
+- **Core Pattern**: Making observability and complex telemetry pipelines immediately comprehensible.
+- **Key Takeaways**:
+  - Outstanding Mermaid/SVG architecture diagrams illustrating SDK tracing, batch ingestion, ClickHouse storage, and dashboard querying.
+  - Clear integration matrix showing supported frameworks (LangChain, LlamaIndex, LiteLLM, OpenAI SDK).
+  - Production-readiness guides clearly distinct from local docker-compose development.
+
+### 9. [Plane](https://github.com/makeplane/plane) — Polished Multi-Feature Product Presentation
+- **Core Pattern**: Dense, scannable presentation of an enterprise-scale application suite.
+- **Key Takeaways**:
+  - Organizes dozens of complex features into logical modules (Issues, Cycles, Modules, Views).
+  - Consistent asset styling with subtle borders and uniform aspect ratios.
+  - Explicit deployment guides for Docker, Kubernetes, and Cloud.
+
+### 10. [Excalidraw](https://github.com/excalidraw/excalidraw) — Restrained, Minimal, Highly Legible
+- **Core Pattern**: Masterclass in design restraint.
+- **Key Takeaways**:
+  - Zero badge bloat, zero marketing fluff.
+  - High-contrast vector visual proof right at the top.
+  - Immediate package embed instructions (`npm install @excalidraw/excalidraw`) followed by a minimal 10-line React code sample.
+  - Proof that less is more when the software itself is compelling.
+
+---
+
+## Cross-Cutting Principles for Portfolio Repositories
+
+When presenting a personal or portfolio repository, borrow these high-impact habits:
+
+1. **Lead with the Outcome**: Explain what problem is solved before explaining how it was compiled.
+2. **Put Proof Near the Top**: A working demo, screenshot grid, or CLI recording within the first viewport proves the software runs.
+3. **Expose Defensible Engineering**: Dedicate a section to non-obvious technical challenges (Problem, Approach, Why, Tradeoff).
+4. **Categorize the Tech Stack**: Group technologies by role (Client, Backend, Database, AI, Infrastructure) rather than an alphabetical badge dump.
+5. **Provide a Tested Quick Start**: Verify that commands in `README.md` actually execute in a clean environment without hidden dependencies.
+6. **Honest Boundaries**: Openly state current limitations, test coverage, and roadmap items to build authentic trust.

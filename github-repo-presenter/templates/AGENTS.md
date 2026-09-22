@@ -1,33 +1,38 @@
 # GitHub Repo Presenter
 
-Apply these instructions when the user asks to make this repository presentable, portfolio-ready, credible, easier to review, or easier to reproduce.
+Apply these instructions whenever the user asks to make this repository **presentable, portfolio-ready, technically credible, visually strong, easier to review, or easier to reproduce**.
 
-## Scope
+## Outcome & Scope
 
-Make the repository easy to understand, easy to run, and honest about its maturity. This is a presentation and reproducibility pass, not permission for a broad product rewrite. Preserve unrelated work and existing project conventions.
+Transform the repository into an exceptionally polished open-source showcase on par with benchmark repositories (Onlook, Twenty, Infisical, Formbricks, Midday, Trigger.dev, Browser Use, Langfuse, Plane, Excalidraw).
 
-## Non-negotiable evidence rules
+The repository must feel like a compact combination of **product page**, **engineering case study**, and **technical documentation**. This is a presentation and reproducibility pass—do not perform broad code rewrites or refactor functional application logic solely to make the repository look nicer.
 
-- Inspect `git status --short --branch`, remotes, the top-level tree, the README, and the relevant manifest before editing.
-- Never invent URLs, screenshots, metrics, stars, tests, credentials, features, integrations, architecture claims, or deployment status. Label missing evidence as missing or unverified.
-- Never commit secrets. Treat `.env`, API keys, tokens, private URLs, dumps, generated credentials, and real user data as sensitive.
-- Do not rewrite history, force-push, delete branches, rename the repository, change its license, or alter remote settings without explicit scope.
-- Do not add dependencies, remove working behavior, or refactor product code only to make the repository look nicer.
-- Use real screenshots and assets only. Never present generated UI as proof of a working feature.
+## Non-Negotiable Grounding Laws (Anti-Hallucination)
 
-## Workflow
+- **Zero Fabrications**: Never invent live URLs, active users, revenue, benchmarks, features, integrations, performance speedups, deployment status, awards, or star counts.
+- **Label Unverified Claims**: If evidence is missing or requires an API key, mark it clearly as unverified or required.
+- **Zero Committed Secrets**: Treat `.env`, API keys, tokens, session IDs, private keys, and credentials as strictly sensitive.
+- **Zero Fake UI Screenshots**: Never generate fake UI mockups and present them as proof of working code. If visual assets are missing, use code-based visual assets (Mermaid architecture flowcharts, ASCII trees, formatted code snippet tables) and provide an explicit screenshot capture specification for the user.
+- **Preserve Unrelated Work**: Check `git status --short --branch` before editing. Never overwrite unrelated dirty files, rewrite Git history, force-push, or delete branches without explicit instruction.
 
-1. Inventory the project: stack, entry points, package manager, runtime, environment variables, commands, deployment links, screenshots, tests, and existing documentation.
-2. Classify findings as **Blocking**, **High impact**, or **Polish**.
-3. Improve the README in place when possible. Lead with the product promise, verified visual proof, concrete capabilities, engineering decisions, accurate stack, reproducible quick start, architecture, demo path, status and trade-offs, then relevant contribution/security/license links.
-4. Improve repository hygiene only when it increases comprehension or reproducibility. Keep docs, assets, scripts, tests, and examples in clear homes. Preserve lockfiles, migrations, seed data, tests, and meaningful generated artifacts.
-5. For public-facing work, study relevant high-traction repositories if browsing is available. Borrow patterns, never prose, branding, assets, unsupported claims, or layouts.
-6. Verify with `git diff --check`, the existing project checks when available, documented setup when safe, README link/image checks, a secret/placeholder scan, and a focused diff review.
+## 6-Phase Execution Workflow
 
-## Decision rule
-
-If the user asks for an audit only, report evidence and stop. If they ask for implementation, make the smallest coherent set of changes that addresses blocking and high-impact gaps. Keep GitHub metadata recommendations separate from local edits and say explicitly when remote settings were not changed.
+1. **Codebase Deep Dive**: Never begin by rewriting README.md. Inspect manifests, source files (`src/`, `app/`, `lib/`, `api/`), schemas, Docker configs, and tests to ground all claims in actual code.
+2. **Project Archetype Classification**: Classify the project into its primary archetype (Product/SaaS, AI/Agent, Developer Tool/Library, Game, Data/ML, Mobile App, Infrastructure/Backend, Personal Experimental) and adapt presentation priorities accordingly.
+3. **Visual Strategy**: Craft a high-impact first viewport (project name, 1-sentence value proposition, key links, visual proof). Use structured 2-column feature grids (`| Feature A | Feature B |`) instead of vertical screenshot waterfalls.
+4. **Architecture & Engineering Deep Dives**:
+   - Construct a clean Mermaid diagram with distinct subgraphs and an end-to-end numbered workflow (steps 1–5) referencing actual code modules.
+   - Document 1-3 substantial engineering challenges using the **Problem-Approach-Why-Tradeoff (PAWT)** framework.
+5. **README Information Architecture & Hygiene**:
+   - Organize the tech stack by responsibility (Client, Backend, Database, Infrastructure).
+   - Write like a senior systems engineer; ban all marketing fluff (*revolutionary, cutting-edge, seamless, delve, game-changing*).
+   - Provide a verified quick start and safe `.env.example`.
+   - Curate a clean repository root and functional directory tree.
+6. **Automated Validation & Quality Scoring**:
+   - Validate with `validate_readme.py` (checks relative links, images, headings, mermaid syntax, package scripts, env variables, secrets, and buzzwords).
+   - Self-evaluate against the internal 12-dimension quality rubric (Clarity, Hierarchy, Visuals, Credibility, Depth, Demo, Architecture, Setup, Scannability, Hygiene, Accuracy, Originality). Refine any score < 4 before completion. (Never print numerical scores into the README).
 
 ## Handoff
 
-End with **Implemented**, **Verified**, **Unverified or blocked**, and **Recommended next step**. Use “documented,” “locally verified,” and “unverified” precisely. Do not call the repository portfolio-ready while a blocking claim or reproduction path remains unverified.
+End with **Implemented**, **Locally Verified**, **Unverified / Awaiting Owner Action**, and **Screenshot / Media Capture Checklist**. Use “documented,” “locally verified,” and “unverified” precisely.

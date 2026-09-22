@@ -1,21 +1,30 @@
-# Agent and IDE instruction conventions
+# Agent & IDE Instruction Conventions
 
-The portable workflow lives in `PORTABLE_PROMPT.md`. These are the adapter locations currently documented by major coding agents and IDEs:
+The primary, tool-neutral source of truth is [PORTABLE_PROMPT.md](../PORTABLE_PROMPT.md). To allow coding agents and IDE assistants to automatically discover and enforce these presentation standards, thin adapters are provided for major tools:
 
-| Tool or environment | Recommended adapter | Notes |
-| --- | --- | --- |
-| Cross-agent default | `AGENTS.md` at the target repository root | Broadest shared option. Several agent CLIs recognize it. |
-| Claude Code | `CLAUDE.md` at the target repository root | The included adapter imports `AGENTS.md`, so the workflow has one source of truth. |
-| Cursor | `.cursor/rules/github-repo-presenter.mdc` | Cursor project rules use MDC frontmatter. The legacy root `.cursorrules` file is still supported but deprecated. |
-| Windsurf / Cascade | `AGENTS.md` or `.windsurf/rules/` | `AGENTS.md` is the simplest portable path; use a Windsurf rule when activation or path scoping is needed. |
-| GitHub Copilot | `.github/copilot-instructions.md` | Repository-wide instructions are supported by Copilot Chat, CLI, cloud agent, and several IDE integrations. |
-| Any other agent | `PORTABLE_PROMPT.md` | Attach it, paste it, or ask the agent to read it before working. |
+| Tool / Environment | Adapter File Location | Behavior & Conventions |
+| :--- | :--- | :--- |
+| **Cross-Agent Standard** | `AGENTS.md` (root) | Recognized by modern autonomous coding agents. Broadest shared standard. |
+| **Claude Code** | `CLAUDE.md` (root) | Imports `AGENTS.md` so instructions remain unified in a single source of truth. |
+| **Cursor** | `.cursor/rules/github-repo-presenter.mdc` | Project rule with frontmatter (`alwaysApply: false`). Activates on repo presentation tasks. |
+| **Windsurf / Cascade** | `AGENTS.md` or `.windsurf/rules/` | Cascade natively consumes `AGENTS.md`; custom rule can be placed in `.windsurf/rules/`. |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | Supported across VS Code, JetBrains, Visual Studio, and GitHub Copilot CLI. |
+| **Codex** | `SKILL.md` / `agents/openai.yaml` | Standard Codex skill directory format, placed in `~/.agents/skills/`. |
+| **Any Chat / CLI Agent** | `PORTABLE_PROMPT.md` | Paste or point the agent directly: *"Read `PORTABLE_PROMPT.md` and apply it to this repository."* |
 
-The installer in `scripts/install_adapter.py` copies the available adapters without overwriting existing files unless `--force` is explicitly provided.
+---
 
-Vendor references:
+## Installing Adapters Automatically
 
-- [Claude Code memory and instruction files](https://code.claude.com/docs/en/memory)
-- [Cursor project rules](https://docs.cursor.com/context/rules)
-- [Windsurf Cascade memories and rules](https://docs.windsurf.com/windsurf/cascade/memories)
-- [GitHub Copilot custom-instruction support](https://docs.github.com/en/copilot/reference/custom-instructions-support)
+Use the included safe installer script from the toolkit root:
+
+```bash
+# Preview what would be installed
+python3 github-repo-presenter/scripts/install_adapter.py --target /path/to/project --adapter agents --dry-run
+
+# Install a specific adapter (refuses to overwrite existing files without --force)
+python3 github-repo-presenter/scripts/install_adapter.py --target /path/to/project --adapter claude
+
+# Install all supported adapters
+python3 github-repo-presenter/scripts/install_adapter.py --target /path/to/project --adapter all
+```
