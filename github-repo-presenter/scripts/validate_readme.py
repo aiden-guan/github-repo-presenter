@@ -108,7 +108,13 @@ class ReadmeValidator:
 
     def validate_heading_hierarchy(self) -> None:
         lines = self.text.splitlines()
+        in_code_block = False
         for idx, line in enumerate(lines, 1):
+            if line.strip().startswith("```"):
+                in_code_block = not in_code_block
+                continue
+            if in_code_block:
+                continue
             m = re.match(r"^(#{1,6})\s+(.+)$", line)
             if m:
                 level = len(m.group(1))

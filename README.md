@@ -2,7 +2,7 @@
 
 **A portable, agent-agnostic toolkit for turning unfinished, hackathon, or AI-assisted repositories into elite, portfolio-ready open-source showcases.**
 
-[Portable Playbook](github-repo-presenter/PORTABLE_PROMPT.md) · [Reference Library](github-repo-presenter/references/) · [Audit Tool](github-repo-presenter/scripts/audit_repo.py) · [README Validator](github-repo-presenter/scripts/validate_readme.py) · [Quick Start](#quick-start-for-any-agent-or-ide)
+[Portable Playbook](github-repo-presenter/PORTABLE_PROMPT.md) · [Reference Library](github-repo-presenter/references/) · [Changelog](CHANGELOG.md) · [Audit Tool](github-repo-presenter/scripts/audit_repo.py) · [README Validator](github-repo-presenter/scripts/validate_readme.py) · [Quick Start](#quick-start-for-any-agent-or-ide)
 
 ---
 
@@ -106,6 +106,7 @@ Detailed reference guides are organized in `github-repo-presenter/references/`:
 - [**`visual-system.md`**](github-repo-presenter/references/visual-system.md) — Presentation graphics, 2-column feature grids, aspect ratios, screenshot cropping, and GIF demos.
 - [**`engineering-deep-dives.md`**](github-repo-presenter/references/engineering-deep-dives.md) — The Problem-Approach-Why-Tradeoff framework with real codebase examples.
 - [**`quality-rubric.md`**](github-repo-presenter/references/quality-rubric.md) — The internal 12-dimension quality scoring rubric (1–5 scale) and refinement triggers.
+- [**`changelog-and-updates.md`**](github-repo-presenter/references/changelog-and-updates.md) — Standards and visual layout for clean, professional repository changelogs and release notes.
 - [**`benchmark-repos.md`**](github-repo-presenter/references/benchmark-repos.md) — Deep analysis of 10 benchmark open-source repositories.
 - [**`github-surfaces.md`**](github-repo-presenter/references/github-surfaces.md) — Repository descriptions, topics, social preview images, and root hygiene.
 - [**`agent-conventions.md`**](github-repo-presenter/references/agent-conventions.md) — Supported instruction adapter formats across AI agents and IDEs.
@@ -130,7 +131,17 @@ python3 github-repo-presenter/scripts/validate_readme.py /path/to/target/README.
 python3 github-repo-presenter/scripts/validate_readme.py /path/to/target/README.md --strict
 ```
 
-### 3. Instruction Adapter Installer (`install_adapter.py`)
+### 3. Automated Changelog Generator (`update_changelog.py`)
+Parses conventional git commits, groups updates into structured categories, and prepends a clean, professional entry to `CHANGELOG.md`:
+```bash
+# Preview the generated changelog entry
+python3 github-repo-presenter/scripts/update_changelog.py --preview
+
+# Write/prepend the entry directly to CHANGELOG.md
+python3 github-repo-presenter/scripts/update_changelog.py --version v1.1.0 --write
+```
+
+### 4. Instruction Adapter Installer (`install_adapter.py`)
 Safely installs instruction adapters into a target repository without overwriting existing files:
 ```bash
 python3 github-repo-presenter/scripts/install_adapter.py --target /path/to/target --adapter agents

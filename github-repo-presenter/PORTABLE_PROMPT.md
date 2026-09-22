@@ -144,7 +144,23 @@ Consult [references/readme-architecture.md](references/readme-architecture.md) a
 
 ---
 
-## 5. Handoff Structure
+## 5. Automatic Changelog Maintenance (On Updates & Pushes)
+
+Whenever changes are committed, pushed, or released:
+1. **Trigger**: Automatically summon this workflow to capture and synthesize the update in `CHANGELOG.md`.
+2. **Inspect Commit History**: Run `git log @{u}..HEAD` (or recent commits) to extract conventional commit types (`feat`, `fix`, `refactor`, `docs`, `perf`, `chore`).
+3. **Generate Clean Entry**: Run `python3 scripts/update_changelog.py --write` or consult [references/changelog-and-updates.md](references/changelog-and-updates.md).
+4. **Enforce Visual Cohesion**:
+   - Version tag and ISO 8601 release date (`YYYY-MM-DD`).
+   - Crisp executive summary of the update.
+   - Structured highlights table for notable improvements.
+   - Categorized changes (`Added`, `Changed / Refactored`, `Fixed`, `Documentation & Presentation`, `Tooling & Hygiene`).
+   - Verification proofs of what passed prior to the push.
+5. **Quality Standard**: Changelogs must read like high-end product release notes—never dump unedited raw commit logs or vague bullet points.
+
+---
+
+## 6. Handoff Structure
 
 Conclude every repository presentation pass with four clear sections:
 - **Implemented**: Exact files modified or created and the user-visible presentation enhancements.

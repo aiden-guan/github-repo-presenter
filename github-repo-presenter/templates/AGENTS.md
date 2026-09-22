@@ -33,6 +33,14 @@ The repository must feel like a compact combination of **product page**, **engin
    - Validate with `validate_readme.py` (checks relative links, images, headings, mermaid syntax, package scripts, env variables, secrets, and buzzwords).
    - Self-evaluate against the internal 12-dimension quality rubric (Clarity, Hierarchy, Visuals, Credibility, Depth, Demo, Architecture, Setup, Scannability, Hygiene, Accuracy, Originality). Refine any score < 4 before completion. (Never print numerical scores into the README).
 
+## Automatic Changelog Maintenance (On Updates & Pushes)
+
+Whenever changes are committed, pushed, or released:
+- The agent must automatically capture the update in `CHANGELOG.md`.
+- Inspect git commits (`git log @{u}..HEAD` or recent commits) and categorize into `Added`, `Changed / Refactored`, `Fixed`, `Documentation`, and `Tooling`.
+- Run `python3 scripts/update_changelog.py --write` or follow [references/changelog-and-updates.md](references/changelog-and-updates.md).
+- Enforce visual cohesion: executive summary, architectural highlights table, categorized changes, and verified proofs.
+
 ## Handoff
 
 End with **Implemented**, **Locally Verified**, **Unverified / Awaiting Owner Action**, and **Screenshot / Media Capture Checklist**. Use “documented,” “locally verified,” and “unverified” precisely.

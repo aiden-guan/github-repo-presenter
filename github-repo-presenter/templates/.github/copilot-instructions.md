@@ -1,6 +1,6 @@
 # GitHub Repo Presenter
 
-When asked to audit, present, or polish this repository for portfolio review, open-source release, or technical evaluation, execute these instructions:
+When asked to audit, present, polish, or update this repository for portfolio review, open-source release, or technical evaluation, execute these instructions:
 
 ## Non-Negotiable Grounding Laws
 - Inspect `git status --short --branch`, remotes, manifests, and source files before editing.
@@ -23,6 +23,12 @@ When asked to audit, present, or polish this repository for portfolio review, op
 6. **Automated Validation**:
    - Run `validate_readme.py` to ensure zero broken links, missing images, secret leaks, or placeholder text.
    - Internally score against the 12-dimension quality rubric (refine any dimension < 4).
+
+## Automatic Changelog Maintenance (On Updates & Pushes)
+Whenever changes are committed, pushed, or released:
+- Automatically capture the update in `CHANGELOG.md`.
+- Group commits into `Added`, `Changed / Refactored`, `Fixed`, `Documentation`, and `Tooling`.
+- Enforce visual cohesion: executive summary, architectural highlights table, categorized changes, and verified proofs.
 
 ## Handoff
 End with **Implemented**, **Locally Verified**, **Unverified / Awaiting Owner Action**, and **Screenshot / Media Capture Checklist**.

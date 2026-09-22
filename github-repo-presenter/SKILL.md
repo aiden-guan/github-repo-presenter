@@ -1,6 +1,6 @@
 ---
 name: github-repo-presenter
-description: Audit and transform any GitHub repository into an elite, portfolio-ready showcase with rigorous technical credibility, grounded architecture, visual feature grids, and verified reproduction steps. Use when preparing repositories for public release, hiring reviews, or open-source showcases.
+description: Audit and transform any GitHub repository into an elite, portfolio-ready showcase with rigorous technical credibility, grounded architecture, visual feature grids, and verified reproduction steps. Also automatically summoned whenever a repository is updated, committed, or pushed to generate and maintain a clean, professional, and visually cohesive CHANGELOG.md matching the repository's presentation standard.
 ---
 
 # GitHub Repo Presenter
@@ -147,6 +147,22 @@ Consult [references/readme-architecture.md](references/readme-architecture.md) a
    11. Accuracy
    12. Originality
    *Trigger Rule: If any dimension scores < 4, perform a targeted revision before completing.* (Never print numerical scores into the README).
+
+---
+
+## Automatic Summoning on Updates & Pushes (Changelog Maintenance)
+
+Whenever a repository is updated, committed, or pushed:
+1. **Trigger**: The skill is automatically summoned to record the update in `CHANGELOG.md`.
+2. **Commit / Diff Inspection**: Inspect the git commit range (`git log @{u}..HEAD` or recent commits) or staged changes to extract conventional commit types and scopes.
+3. **Structured Entry Generation**: Run `python3 scripts/update_changelog.py --write` or consult [references/changelog-and-updates.md](references/changelog-and-updates.md) to generate a clean, professional, and visually cohesive entry.
+4. **Visual & Structural Cadence**:
+   - Version tag and ISO 8601 release date (`YYYY-MM-DD`).
+   - One-sentence executive summary explaining the purpose of the update.
+   - High-impact architectural highlights table.
+   - Categorized change groups: `Added`, `Changed / Refactored`, `Fixed`, `Documentation & Presentation`, `Tooling & Hygiene`.
+   - Explicit verification proof showing what passed before the push.
+5. **Quality Rule**: Ensure the changelog maintains the exact same visual rigor, typography, and tone as the README—never dump unedited raw git commit messages or vague "various fixes" bullets.
 
 ---
 
